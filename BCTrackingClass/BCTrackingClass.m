@@ -13,16 +13,19 @@
 
 @implementation BCTrackingClass
 
-void myMethodIMP(id self, SEL _cmd, SEL mySelector);
+void myMethodIMP(id self, SEL _cmd);
 
-void myMethodIMP(id self, SEL _cmd, SEL mySelector)
+void myMethodIMP(id self, SEL _cmd) //FIXME : mySelector doesn't get through here
 {
-    NSLog(@"%@",NSStringFromSelector(mySelector));
-    [BCTrackingClass logCallForMethod:NSStringFromSelector(mySelector)];
-    objc_msgSend(self, mySelector);      // Equivalent to [self mySelector];
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    [BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];
+    //objc_msgSend(self, mySelector);      // Equivalent to [self mySelector];
+    objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
+    // Harcoded version for testing
 }
 
-+(void)setUpTrackingWithMethodArray:(NSArray*)anArray	//Array of selectorsStrings of methods to track
++(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray	//Array of selectorsStrings of methods to track
 {
     for (NSString* selectorString in anArray)
     {
@@ -36,7 +39,8 @@ void myMethodIMP(id self, SEL _cmd, SEL mySelector)
         
         class_addMethod([BCTrackedClass class],
                         trackedSelector,
-                        (IMP) myMethodIMP, "v@:@"); //Whats the type encoding for myMethodImp ?
+                        //(IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
+                        (IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
         
         //Swizzle the original method with the tracked one
         Method original = class_getInstanceMethod([BCTrackedClass class],
@@ -49,6 +53,6 @@ void myMethodIMP(id self, SEL _cmd, SEL mySelector)
 
 +(void)logCallForMethod:(NSString*)aSelectorString
 {
-    NSLog(@"%@",aSelectorString);
+    NSLog(@"Catched a call to : %@",aSelectorString);
 }
 @end

@@ -10,11 +10,15 @@
 
 @implementation BCTrackedClass
 
+BOOL doSwizzle = YES;
+
 +(void)load
 {
-    [BCTrackingClass setUpTrackingWithMethodArray:(NSArray *)
-        [NSArray arrayWithObjects:@"doA", nil]
-     ];
+    if (doSwizzle)
+    {   [BCTrackingClass setUpTrackingForClass:[self class] andMethodArray:
+            [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+         ];
+    }
 }
 
 -(id)init
@@ -25,12 +29,19 @@
 }
 
 -(void)doA
-{
-    NSLog(@"Do A");
+{   //NSLog(@"Message : doA");
+    //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
+    
 }
 -(void)doB
 {
-    NSLog(@"Do B");
+    //NSLog(@"Message : doB");
+    //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
+}
+-(void)doC
+{
+    //NSLog(@"Message : doC");
+    //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
 }
 
 

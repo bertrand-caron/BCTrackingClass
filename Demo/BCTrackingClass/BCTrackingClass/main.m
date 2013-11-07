@@ -20,6 +20,11 @@ int main(int argc, const char * argv[])
         
         BCTrackedClass* tracked = [[BCTrackedClass alloc]init];
         [tracked doA];
+        [tracked doB];
+        [tracked doC];
+        [tracked doB];
+        [tracked doA];
+        
         
     }
     return 0;

@@ -10,8 +10,7 @@
 
 @interface BCTrackingClass : NSObject
 
-
-+(void)setUpTrackingWithMethodArray:(NSArray*)anArray;
++(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray;
 +(void)logCallForMethod:(NSString*)aSelectorString;
 
 @end

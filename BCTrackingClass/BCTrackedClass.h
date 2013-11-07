@@ -15,5 +15,6 @@
 -(id)init;
 -(void)doA;
 -(void)doB;
+-(void)doC;
 
 @end
