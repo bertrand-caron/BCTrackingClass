@@ -23,15 +23,40 @@ void myMethodIMP(id self, SEL _cmd)
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
 }
 
-void myMethodIMP1Arg(id self, SEL _cmd, id object);
+void myMethodIMP1Arg(id self, SEL _cmd, id object1);
 
-void myMethodIMP1Arg(id self, SEL _cmd, id object)
+void myMethodIMP1Arg(id self, SEL _cmd, id object1)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     [BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
-                 object);
+                 object1);
+}
+
+void myMethodIMP2Arg(id self, SEL _cmd, id object1, id object2);
+
+void myMethodIMP2Arg(id self, SEL _cmd, id object1, id object2)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    [BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];
+    objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
+                 object1,
+                 object2);
+}
+
+void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3);
+
+void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    [BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];
+    objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
+                 object1,
+                 object2,
+                 object3);
 }
 
 +(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray //Array of selectorsStrings of methods to track
@@ -61,6 +86,18 @@ void myMethodIMP1Arg(id self, SEL _cmd, id object)
             class_addMethod(aClass,
                             trackedSelector,
                             (IMP) myMethodIMP1Arg, encoding);
+        }
+        else if (argNumber==2)
+        {
+            class_addMethod(aClass,
+                            trackedSelector,
+                            (IMP) myMethodIMP2Arg, encoding);
+        }
+        else if (argNumber==3)
+        {
+            class_addMethod(aClass,
+                            trackedSelector,
+                            (IMP) myMethodIMP3Arg, encoding);
         }
         
         
