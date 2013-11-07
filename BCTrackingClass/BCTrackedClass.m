@@ -47,7 +47,8 @@ BOOL doSwizzle = YES;
 //Method with arguments
 -(void)doD:(id)anObject
 {
-    
+    if ([anObject isKindOfClass:[NSString class]])
+    {NSLog(@"%@",anObject);}
 }
 
 

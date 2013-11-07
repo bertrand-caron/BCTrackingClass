@@ -54,13 +54,13 @@ void myMethodIMP1Arg(id self, SEL _cmd, id object)
         {
             class_addMethod(aClass,
                         trackedSelector,
-                        (IMP) myMethodIMP, "v@:");
+                        (IMP) myMethodIMP, encoding);
         }
         else if (argNumber==1)
         {
             class_addMethod(aClass,
                             trackedSelector,
-                            (IMP) myMethodIMP1Arg, "v@:@");
+                            (IMP) myMethodIMP1Arg, encoding);
         }
         
         
