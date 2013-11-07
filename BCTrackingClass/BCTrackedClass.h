@@ -17,4 +17,7 @@
 -(void)doB;
 -(void)doC;
 
+//Method with arguments
+-(void)doD:(id)anObject;
+
 @end

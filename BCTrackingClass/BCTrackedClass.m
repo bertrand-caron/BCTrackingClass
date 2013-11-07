@@ -16,7 +16,7 @@ BOOL doSwizzle = YES;
 {
     if (doSwizzle)
     {   [BCTrackingClass setUpTrackingForClass:[self class] andMethodArray:
-            [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+            [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
          ];
     }
 }
@@ -42,6 +42,12 @@ BOOL doSwizzle = YES;
 {
     //NSLog(@"Message : doC");
     //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
+}
+
+//Method with arguments
+-(void)doD:(id)anObject
+{
+    
 }
 
 

@@ -15,38 +15,30 @@
 
 void myMethodIMP(id self, SEL _cmd);
 
-void myMethodIMP(id self, SEL _cmd) //FIXME : mySelector doesn't get through here
+void myMethodIMP(id self, SEL _cmd)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     [BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];
-    //objc_msgSend(self, mySelector);      // Equivalent to [self mySelector];
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
-    // Harcoded version for testing
 }
 
-+(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray	//Array of selectorsStrings of methods to track
++(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray //Array of selectorsStrings of methods to track
 {
     for (NSString* selectorString in anArray)
     {
         SEL selector = NSSelectorFromString(selectorString);
         SEL trackedSelector = NSSelectorFromString([NSString stringWithFormat:@"tracked%@",selectorString]);
-    	/*//Create a method stub @selector(trackedMySelector) doing :
-    	^{       [BCTrackingClass logCallForMethod: "mySelector"]; //Log whatever I wanna log
-                [myObject "call my selector"]; 		//Then call the method it is stubbing
-    	}
-    	// HOW ??*/
         
         class_addMethod(aClass,
                         trackedSelector,
-                        //(IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
-                        (IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
+                        (IMP) myMethodIMP, "v@:");
         
         //Swizzle the original method with the tracked one
         Method original = class_getInstanceMethod(aClass,
-                        selector);
-    	Method swizzled = class_getInstanceMethod(aClass,
-                        trackedSelector);
+                                                  selector);
+        Method swizzled = class_getInstanceMethod(aClass,
+                                                  trackedSelector);
         method_exchangeImplementations(original, swizzled);
     }
 }

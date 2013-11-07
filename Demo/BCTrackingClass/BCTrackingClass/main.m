@@ -19,6 +19,7 @@ int main(int argc, const char * argv[])
         [tracked doA];
         [tracked doB];
         [tracked doC];
+        [tracked doD:@"Hello"];
         [tracked doB];
         [tracked doA];
         
