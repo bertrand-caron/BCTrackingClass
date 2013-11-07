@@ -12,6 +12,7 @@
 		97FA6989182B90D9001CFC9D /* BCTrackingClass.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 97FA6988182B90D9001CFC9D /* BCTrackingClass.1 */; };
 		97FA6993182B90F4001CFC9D /* BCTrackedClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA6990182B90F4001CFC9D /* BCTrackedClass.m */; };
 		97FA6994182B90F4001CFC9D /* BCTrackingClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA6992182B90F4001CFC9D /* BCTrackingClass.m */; };
+		97FA6997182BB6DC001CFC9D /* BCTrackedClass2.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA6996182BB6DC001CFC9D /* BCTrackedClass2.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +38,8 @@
 		97FA6990182B90F4001CFC9D /* BCTrackedClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCTrackedClass.m; path = ../../../BCTrackingClass/BCTrackedClass.m; sourceTree = "<group>"; };
 		97FA6991182B90F4001CFC9D /* BCTrackingClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BCTrackingClass.h; path = ../../../BCTrackingClass/BCTrackingClass.h; sourceTree = "<group>"; };
 		97FA6992182B90F4001CFC9D /* BCTrackingClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BCTrackingClass.m; path = ../../../BCTrackingClass/BCTrackingClass.m; sourceTree = "<group>"; };
+		97FA6995182BB6DC001CFC9D /* BCTrackedClass2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BCTrackedClass2.h; sourceTree = "<group>"; };
+		97FA6996182BB6DC001CFC9D /* BCTrackedClass2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BCTrackedClass2.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				97FA6988182B90D9001CFC9D /* BCTrackingClass.1 */,
 				97FA698F182B90F4001CFC9D /* BCTrackedClass.h */,
 				97FA6990182B90F4001CFC9D /* BCTrackedClass.m */,
+				97FA6995182BB6DC001CFC9D /* BCTrackedClass2.h */,
+				97FA6996182BB6DC001CFC9D /* BCTrackedClass2.m */,
 				97FA6991182B90F4001CFC9D /* BCTrackingClass.h */,
 				97FA6992182B90F4001CFC9D /* BCTrackingClass.m */,
 				97FA6986182B90D9001CFC9D /* Supporting Files */,
@@ -152,6 +157,7 @@
 				97FA6993182B90F4001CFC9D /* BCTrackedClass.m in Sources */,
 				97FA6994182B90F4001CFC9D /* BCTrackingClass.m in Sources */,
 				97FA6985182B90D9001CFC9D /* main.m in Sources */,
+				97FA6997182BB6DC001CFC9D /* BCTrackedClass2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

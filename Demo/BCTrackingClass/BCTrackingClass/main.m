@@ -8,15 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "BCTrackedClass.h"
+#import "BCTrackedClass2.h"
 
 int main(int argc, const char * argv[])
 {
 
     @autoreleasepool {
-        
-        // insert code here...
-        //NSLog(@"Hello, World!");
-        
         
         BCTrackedClass* tracked = [[BCTrackedClass alloc]init];
         [tracked doA];
@@ -25,6 +22,12 @@ int main(int argc, const char * argv[])
         [tracked doB];
         [tracked doA];
         
+        BCTrackedClass2* tracked2 = [[BCTrackedClass2 alloc]init];
+        [tracked2 doA];
+        [tracked2 doB];
+        [tracked2 doC];
+        [tracked2 doB];
+        [tracked2 doA];
         
     }
     return 0;

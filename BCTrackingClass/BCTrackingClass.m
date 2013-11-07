@@ -37,15 +37,15 @@ void myMethodIMP(id self, SEL _cmd) //FIXME : mySelector doesn't get through her
     	}
     	// HOW ??*/
         
-        class_addMethod([BCTrackedClass class],
+        class_addMethod(aClass,
                         trackedSelector,
                         //(IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
                         (IMP) myMethodIMP, "v@:"); //Whats the type encoding for myMethodImp ?
         
         //Swizzle the original method with the tracked one
-        Method original = class_getInstanceMethod([BCTrackedClass class],
+        Method original = class_getInstanceMethod(aClass,
                         selector);
-    	Method swizzled = class_getInstanceMethod([BCTrackedClass class],
+    	Method swizzled = class_getInstanceMethod(aClass,
                         trackedSelector);
         method_exchangeImplementations(original, swizzled);
     }
