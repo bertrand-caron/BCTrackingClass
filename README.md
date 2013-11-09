@@ -12,21 +12,53 @@ some underused feature he could benefit from.
 
 Installation
 ------------
-Drag the two files `BCTrackingClass.h` and `BCTrackingClass.m`.
+Drag the two files `BCTrackingClass.h` and `BCTrackingClass.m` to your project.
 
 
 Usage
 -----
-For every class you would like to track :
-- import the class header
-in your `.m` file : `#import "BCTrackingClass.h"`
-- Create a `+(void)load` method calling `+(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray` : 
+- Init a tracker and make it your application default one, adding 
+these lines to your `main.m` : 
+```
+//  main.m
+
+#import <Cocoa/Cocoa.h>
+
+int main(int argc, char *argv[])
+{
+        BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
+        NSLog(@"Init a tracker at address : %p",tracker);
+        [tracker registerTrackerAsDefault];
+
+	return NSApplicationMain(argc, (const char **)argv);
+}
 
 ```
-[TrackingClass setUpTrackingForClass:[self class] andMethodArray:
-            [ NSArray arrayWithObjects:@"doA",@"doB", nil]
-         ];
+- Add the relevant line for every class and methods you would like to track :
 ```
-- Personnalize the `+(void)logCallForMethod:(NSString*)aSelectorString` method
+//  main.m
+
+#import <Cocoa/Cocoa.h>
+
+int main(int argc, char *argv[])
+{
+        BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
+        NSLog(@"Init a tracker at address : %p",tracker);
+        [tracker registerTrackerAsDefault];
+
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
+         ];
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass2 class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+         ];
+
+
+	return NSApplicationMain(argc, (const char **)argv);
+}
+
+```
+- Optionnal : By default, the calls are logged to `NSMutableDictionnary* trackerDict `. 
+Feel free to personnalize the `-(void)logCallForMethod:(NSString*)aSelectorString` method if you need more.
 
 

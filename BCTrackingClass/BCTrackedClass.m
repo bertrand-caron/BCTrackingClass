@@ -14,11 +14,11 @@ BOOL doSwizzle = YES;
 
 +(void)load
 {
-    if (doSwizzle)
+    /*if (doSwizzle)
     {   [BCTrackingClass setUpTrackingForClass:[self class] andMethodArray:
             [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
          ];
-    }
+    }*/
 }
 
 -(id)init

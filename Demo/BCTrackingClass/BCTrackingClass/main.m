@@ -19,14 +19,15 @@ int main(int argc, const char * argv[])
 
     @autoreleasepool {
         
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
+         ];
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass2 class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+         ];
+        
         BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
         NSLog(@"Init a tracker at address : %p",tracker);
-        
-        /*Method trackerLog =class_getClassMethod([BCTrackingClass class], @selector(logCallForMethod:));
-        
-        Method classLog =class_getInstanceMethod([tracker class], @selector(logCallForMethod:));
-        
-        method_exchangeImplementations(trackerLog, classLog);*/
         [tracker registerTrackerAsDefault];
         
         
@@ -46,7 +47,9 @@ int main(int argc, const char * argv[])
         [tracked2 doA];
         
  
-        
+        for (id key in tracker.trackerDict) {
+            NSLog(@"key: %@, value: %@ \n", key, [tracker.trackerDict objectForKey:key]);
+        }
         
     }
     return 0;

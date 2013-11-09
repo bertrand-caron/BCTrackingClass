@@ -10,7 +10,7 @@
 
 @interface BCTrackingClass : NSObject
 
-@property (assign) NSMutableDictionary* trackerDict;
+@property NSMutableDictionary* trackerDict;
 
 -(id)init;
 
