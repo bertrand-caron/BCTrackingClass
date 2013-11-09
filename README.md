@@ -19,6 +19,7 @@ Usage
 -----
 - Init a tracker and make it your application default one, adding 
 these lines to your `main.m` : 
+
 ```
 //  main.m
 
@@ -27,7 +28,6 @@ these lines to your `main.m` :
 int main(int argc, char *argv[])
 {
         BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
-        NSLog(@"Init a tracker at address : %p",tracker);
         [tracker registerTrackerAsDefault];
 
 	return NSApplicationMain(argc, (const char **)argv);
@@ -35,6 +35,7 @@ int main(int argc, char *argv[])
 
 ```
 - Add the relevant line for every class and methods you would like to track :
+
 ```
 //  main.m
 
@@ -43,7 +44,6 @@ int main(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
         BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
-        NSLog(@"Init a tracker at address : %p",tracker);
         [tracker registerTrackerAsDefault];
 
         [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
@@ -56,7 +56,6 @@ int main(int argc, char *argv[])
 
 	return NSApplicationMain(argc, (const char **)argv);
 }
-
 ```
 - Optionnal : By default, the calls are logged to `NSMutableDictionnary* trackerDict `. 
 Feel free to personnalize the `-(void)logCallForMethod:(NSString*)aSelectorString` method if you need more.
