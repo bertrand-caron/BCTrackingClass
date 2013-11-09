@@ -99,7 +99,11 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
                             trackedSelector,
                             (IMP) myMethodIMP3Arg, encoding);
         }
-        
+        else
+        {
+            NSLog(@"Your method takes too many argument to be tracked. Aborting.");
+            return;
+        }
         
         //Swizzle the original method with the tracked one
 
