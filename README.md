@@ -60,4 +60,9 @@ int main(int argc, char *argv[])
 - Optionnal : By default, the calls are logged to `NSMutableDictionnary* trackerDict `. 
 Feel free to personnalize the `-(void)logCallForMethod:(NSString*)aSelectorString` method if you need more.
 
+Limitations
+-----------
+
+- Tracked methods need to be returning a `-(void)` 
+- Tracked methods can take up to three arguments, which have of type `(id)`, i.e. be objective-C objects (no `BOOL`,`int` and so on).
 
