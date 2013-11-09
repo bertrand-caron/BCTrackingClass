@@ -13,6 +13,20 @@
 
 @implementation BCTrackingClass
 
+@synthesize trackerDict;
+
+
+-(id)init
+{
+    self = [super init];
+    if (self)
+    {
+        trackerDict = [NSMutableDictionary dictionaryWithCapacity:1];
+    }
+    return self;
+}
+
+
 void myMethodIMP(id self, SEL _cmd);
 
 void myMethodIMP(id self, SEL _cmd)
@@ -113,8 +127,55 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
     }
 }
 
+#pragma mark - Logging the calls
+
+/**
+If we don't have a registered tracker, the calls will end up being logged here
+*/
 +(void)logCallForMethod:(NSString*)aSelectorString
 {
     NSLog(@"Catched a call to : %@",aSelectorString);
 }
+
+/**
+ If we have a registered tracker, the calls are being logged here
+*/
+-(void)logCallForMethod:(NSString*)aSelectorString
+{
+    if (! [trackerDict isKindOfClass:[NSMutableDictionary class]])
+    {
+        return;
+    }
+    
+    NSLog(@"Catched a call to : %@",aSelectorString);
+    if ([trackerDict objectForKey:aSelectorString])
+    {
+        [trackerDict setObject:
+         	[NSNumber numberWithInt:
+             	[[trackerDict objectForKey:aSelectorString]intValue]+1]
+            forKey:aSelectorString];
+    }
+    else
+    {
+        [trackerDict setObject:[NSNumber numberWithInt:1] forKey:aSelectorString];
+    }
+        
+}
+
+#pragma mark - Registering a tracker as the default one
+
+/**
+Register a tracker as the default one by swizzling its own -logCallForMethod with the class' one.
+//FIXME: Is gonna be troublesome if called multiple times
+*/
+-(void)registerTrackerAsDefault
+{
+    Method classLog =class_getClassMethod([BCTrackingClass class], @selector(logCallForMethod:));
+    
+    Method selfLog =class_getInstanceMethod([self class], @selector(logCallForMethod:));
+    
+    method_exchangeImplementations(selfLog, classLog);
+}
+
+
 @end

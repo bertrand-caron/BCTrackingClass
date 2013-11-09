@@ -10,7 +10,14 @@
 
 @interface BCTrackingClass : NSObject
 
+@property (assign) NSMutableDictionary* trackerDict;
+
+-(id)init;
+
 +(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray;
 +(void)logCallForMethod:(NSString*)aSelectorString;
+-(void)logCallForMethod:(NSString*)aSelectorString;
+
+-(void)registerTrackerAsDefault;
 
 @end
