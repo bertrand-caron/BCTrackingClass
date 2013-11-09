@@ -64,5 +64,30 @@ Limitations
 -----------
 
 - Tracked methods need to be returning a `-(void)` 
-- Tracked methods can take up to three arguments, which have of type `(id)`, i.e. be objective-C objects (no `BOOL`,`int` and so on).
+- Tracked methods can take up to three arguments, which have to be of type `(id)`, i.e. be objective-C objects (no `BOOL`,`int` or C-struct and so on).
 
+Failure to do so will result in at least BAD bahavior, at most memory corruption and/or loss or arguments.
+
+Discussion
+----------
+
+### Where to set up the tracking ?
+
+Depending on how soon your methods are suceptible to be called, you should set up the tracker in "deeper" methods.
+If you are not particularly insterested in early calling (i.e. before `- (void)applicationDidFinishLaunching:(NSNotification *)aNotification`), 
+it looks like a good place to do so : 
+
+```
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+        BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
+        [tracker registerTrackerAsDefault];
+
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
+         ];
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass2 class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+         ];
+}
+```
