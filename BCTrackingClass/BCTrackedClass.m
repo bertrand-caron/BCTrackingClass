@@ -51,4 +51,9 @@ BOOL doSwizzle = YES;
     {NSLog(@"%@",anObject);}
 }
 
+-(NSString*)returnHello
+{
+    return @"Hello";
+}
+
 @end

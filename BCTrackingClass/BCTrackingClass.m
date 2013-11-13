@@ -27,7 +27,7 @@ static BCTrackingClass* registeredTracker;
     return self;
 }
 
-
+//IMP Returning Void
 void myMethodIMP(id self, SEL _cmd);
 
 void myMethodIMP(id self, SEL _cmd)
@@ -95,6 +95,74 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
                  object3);
 }
 
+
+//IMP returning objects
+id myMethodIMPID(id self, SEL _cmd);
+
+id myMethodIMPID(id self, SEL _cmd)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    if (registeredTracker==nil)
+    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    else
+    {
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+    }
+    return objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
+}
+
+id myMethodIMP1ArgID(id self, SEL _cmd, id object1);
+
+id myMethodIMP1ArgID(id self, SEL _cmd, id object1)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    if (registeredTracker==nil)
+    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    else
+    {
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+    }
+    return objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
+                 object1);
+}
+
+id myMethodIMP2ArgID(id self, SEL _cmd, id object1, id object2);
+
+id myMethodIMP2ArgID(id self, SEL _cmd, id object1, id object2)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    if (registeredTracker==nil)
+    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    else
+    {
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+    }
+    return objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
+                 object1,
+                 object2);
+}
+
+id myMethodIMP3ArgID(id self, SEL _cmd, id object1, id object2, id object3);
+
+id myMethodIMP3ArgID(id self, SEL _cmd, id object1, id object2, id object3)
+{
+    //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
+    if (registeredTracker==nil)
+    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    else
+    {
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+    }
+   return objc_msgSend(self,
+                 NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
+                 object1,
+                 object2,
+                 object3);
+}
+
 +(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray //Array of selectorsStrings of methods to track
 {
     for (NSString* selectorString in anArray)
@@ -111,29 +179,57 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
         
         SEL trackedSelector = NSSelectorFromString([NSString stringWithFormat:@"tracked%@",selectorString]);
         
-        //Select the correct IMP, givent the number of arguments
+        //Select the correct IMP, givent the number of arguments and the return encoding
         IMP correctIMP;
-        if (argNumber==0)
+        if (encoding[0]=='v')
         {
-            correctIMP =(IMP) myMethodIMP;
+            if (argNumber==0)
+            {
+                correctIMP =(IMP) myMethodIMP;
+            }
+            else if (argNumber==1)
+            {
+                correctIMP =(IMP) myMethodIMP1Arg;
+            }
+            else if (argNumber==2)
+            {
+                correctIMP =(IMP) myMethodIMP2Arg;
+            }
+            else if (argNumber==3)
+            {
+                correctIMP =(IMP) myMethodIMP3Arg;
+            }
+            else
+            {
+                NSLog(@"Your method takes too many argument to be tracked. Aborting.");
+                return;
+            }
         }
-        else if (argNumber==1)
+        else if (encoding[0]=='@')
         {
-            correctIMP =(IMP) myMethodIMP1Arg;
+            if (argNumber==0)
+            {
+                correctIMP =(IMP) myMethodIMPID;
+            }
+            else if (argNumber==1)
+            {
+                correctIMP =(IMP) myMethodIMP1ArgID;
+            }
+            else if (argNumber==2)
+            {
+                correctIMP =(IMP) myMethodIMP2ArgID;
+            }
+            else if (argNumber==3)
+            {
+                correctIMP =(IMP) myMethodIMP3ArgID;
+            }
+            else
+            {
+                NSLog(@"Your method takes too many argument to be tracked. Aborting.");
+                return;
+            }
         }
-        else if (argNumber==2)
-        {
-            correctIMP =(IMP) myMethodIMP2Arg;
-        }
-        else if (argNumber==3)
-        {
-            correctIMP =(IMP) myMethodIMP3Arg;
-        }
-        else
-        {
-            NSLog(@"Your method takes too many argument to be tracked. Aborting.");
-            return;
-        }
+        
         class_addMethod(aClass,
                         trackedSelector,
                         correctIMP, encoding);
@@ -183,9 +279,6 @@ If we don't have a registered tracker, the calls will end up being logged here
 
 #pragma mark - Registering a tracker as the default one
 
-/**
-Register a tracker as using "static BCTrackingClass* registeredTracker". Plain simple.
-*/
 -(void)registerTrackerAsDefault
 {
     registeredTracker = self;

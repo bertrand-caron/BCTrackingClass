@@ -20,4 +20,5 @@
 //Method with arguments
 -(void)doD:(id)anObject;
 
+-(NSString*)returnHello;
 @end

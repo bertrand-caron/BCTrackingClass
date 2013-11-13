@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		97F57020182FEE5B00F09932 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 97F57023182FEE5B00F09932 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				97F57024182FEE9B00F09932 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		97FA6982182B90D9001CFC9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97FA6981182B90D9001CFC9D /* Foundation.framework */; };
 		97FA6985182B90D9001CFC9D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97FA6984182B90D9001CFC9D /* main.m */; };
@@ -145,9 +159,26 @@
 			projectRoot = "";
 			targets = (
 				97FA697D182B90D9001CFC9D /* BCTrackingClass */,
+				97F57020182FEE5B00F09932 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		97F57024182FEE9B00F09932 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\nset -x\n# Start constants\ncompany=\"bertrand-caron\";\ncompanyID=\"BCTrackingClass.bertrand-caron.com.github\";\ncompanyURL=\"https://github.com/bertrand-caron/BCTrackingClass\";\ntarget=\"MacOSX\";\n#target=\"macosx\";\noutputPath=\"~/Documents/XCode Projects/BCTrackingClass/help\";\n# End constants\n/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n \"${PROJECT_DIR}\" \\\n--include \"~/Documents/Xcode Projects/BCTrackingClass/BCTrackingClass/BCTrackingClass.h\" ";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		97FA697A182B90D9001CFC9D /* Sources */ = {
@@ -164,6 +195,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		97F57021182FEE5B00F09932 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		97F57022182FEE5B00F09932 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		97FA698A182B90D9001CFC9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -253,6 +298,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		97F57023182FEE5B00F09932 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97F57021182FEE5B00F09932 /* Debug */,
+				97F57022182FEE5B00F09932 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		97FA6979182B90D9001CFC9D /* Build configuration list for PBXProject "BCTrackingClass" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -269,6 +323,7 @@
 				97FA698E182B90D9001CFC9D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -5,6 +5,8 @@
 //  Created by Bertrand Caron on 07/11/2013.
 //  Copyright (c) 2013 Bertrand Caron. All rights reserved.
 //
+/// @file main.m
+/// @mainpage
 
 #import <Foundation/Foundation.h>
 #import "BCTrackedClass.h"
@@ -20,7 +22,7 @@ int main(int argc, const char * argv[])
     @autoreleasepool {
         
         [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
-         [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:", nil]
+         [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:",@"returnHello", nil]
          ];
         [BCTrackingClass setUpTrackingForClass:[BCTrackedClass2 class] andMethodArray:
          [ NSArray arrayWithObjects:@"doA",@"doB", nil]
@@ -46,7 +48,9 @@ int main(int argc, const char * argv[])
         [tracked2 doB];
         [tracked2 doA];
         
- 
+        NSLog(@"%@",[tracked returnHello]);
+        
+        
         for (id key in tracker.trackerDict) {
             NSLog(@"key: %@, value: %@ \n", key, [tracker.trackerDict objectForKey:key]);
         }
