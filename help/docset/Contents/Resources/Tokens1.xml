@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+	<File path="Classes/BCTrackingClass.html">
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/cl/BCTrackingClass</TokenIdentifier>
+			<Abstract type="html">Abstract class in charge of tracking message sending to any given class.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+            
+			
+			<NodeRef refid="1"/>
+		</Token>
+		
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BCTrackingClass/setTrackerDict:</TokenIdentifier>
+			<Abstract type="html">Used to keep track of the calls when a registered Tracker is set.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *trackerDict</Declaration>
+			
+			
+			<Anchor>//api/name/trackerDict</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BCTrackingClass/trackerDict</TokenIdentifier>
+			<Abstract type="html">Used to keep track of the calls when a registered Tracker is set.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *trackerDict</Declaration>
+			
+			
+			<Anchor>//api/name/trackerDict</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instp/BCTrackingClass/trackerDict</TokenIdentifier>
+			<Abstract type="html">Used to keep track of the calls when a registered Tracker is set.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>@property NSMutableDictionary *trackerDict</Declaration>
+			
+			
+			<Anchor>//api/name/trackerDict</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BCTrackingClass/init</TokenIdentifier>
+			<Abstract type="html">Only way to init a Tracker object.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>- (id)init</Declaration>
+			
+			
+			<Anchor>//api/name/init</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BCTrackingClass/setUpTrackingForClass:andMethodArray:</TokenIdentifier>
+			<Abstract type="html">Only method to call to set up tracking of the methods.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>+ (void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray *)anArray</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aClass</Name>
+					<Abstract type="html">The class whose method will be tracked.
+@param anArray</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/setUpTrackingForClass:andMethodArray:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/clm/BCTrackingClass/logCallForMethod:</TokenIdentifier>
+			<Abstract type="html">String of the selector whose call we are logging.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>+ (void)logCallForMethod:(NSString *)aSelectorString</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aSelectorString</Name>
+					<Abstract type="html">String of the selector whose call we are logging.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/logCallForMethod:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BCTrackingClass/logCallForMethod:</TokenIdentifier>
+			<Abstract type="html">String of the selector whose call we are logging.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>- (void)logCallForMethod:(NSString *)aSelectorString</Declaration>
+			<Parameters>
+				<Parameter>
+					<Name>aSelectorString</Name>
+					<Abstract type="html">String of the selector whose call we are logging.</Abstract>
+				</Parameter>
+			</Parameters>
+			
+			<Anchor>//api/name/logCallForMethod:</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+		<Token>
+			<TokenIdentifier>//apple_ref/occ/instm/BCTrackingClass/registerTrackerAsDefault</TokenIdentifier>
+			<Abstract type="html">Register a tracker as defaut using &quot;static BCTrackingClass* registeredTracker&quot;. Plain simple.</Abstract>
+			<DeclaredIn>BCTrackingClass.h</DeclaredIn>
+			
+			<Declaration>- (void)registerTrackerAsDefault</Declaration>
+			
+			
+			<Anchor>//api/name/registerTrackerAsDefault</Anchor>
+            <NodeRef refid="1"/>
+		</Token>
+		
+        
+	</File>
+</Tokens>

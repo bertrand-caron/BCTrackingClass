@@ -1,0 +1,4 @@
+Documentation set was installed to Xcode!
+
+Path: /Users/BertrandCaron/Library/Developer/Shared/Documentation/DocSets/BCTrackingClass.bertrand-caron.com.github.BCTrackingClass.docset
+Time: 2013-11-13 20:38:30 +0000

@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="no"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:docset="http://developer.apple.com/rss/docset_extensions" xml:lang="en">
+    <id>https://github.com/bertrand-caron/BCTrackingClass/bertrand-caron/bertrand-caron.atom/20131113213830</id>
+    <title type="text">BCTrackingClass Documentation</title>
+    <rights>Copyright © 2013 bertrand-caron. All rights reserved.</rights>
+    <link rel="self" href="https://github.com/bertrand-caron/BCTrackingClass/bertrand-caron/bertrand-caron.atom"></link>
+    <docset:publisherName>bertrand-caron</docset:publisherName>
+    <docset:publisherID>BCTrackingClass.bertrand-caron.com.github.documentation</docset:publisherID>
+    <updated>2013-11-13T21:38:30+01:00</updated>
+    <entry>
+        <id>tag:github.com,2013-11-13:BCTrackingClass.bertrand-caron.com.github.BCTrackingClass/1.0.0</id>
+        <title type="text">BCTrackingClass Documentation</title>
+        <updated>2013-11-13T21:38:30+01:00</updated>
+        <content type="text">BCTrackingClass Documentation (v1.0.0)</content>
+        <link rel="enclosure" type="application/octet-stream" href="https:/github.com/bertrand-caron/BCTrackingClass/bertrand-caron/BCTrackingClass.bertrand-caron.com.github.BCTrackingClass-1.0.xar" length="35159"></link>
+        <docset:identifier>BCTrackingClass.bertrand-caron.com.github.BCTrackingClass</docset:identifier>
+        <docset:version>1.0.0</docset:version>
+        <docset:minimumXcodeVersion>3.0.0</docset:minimumXcodeVersion>
+    </entry>
+</feed>
