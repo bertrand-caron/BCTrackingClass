@@ -25,7 +25,7 @@ int main(int argc, const char * argv[])
          [ NSArray arrayWithObjects:@"doA",@"doB",@"doD:",@"returnHello", nil]
          ];
         [BCTrackingClass setUpTrackingForClass:[BCTrackedClass2 class] andMethodArray:
-         [ NSArray arrayWithObjects:@"doA",@"doB", nil]
+         [ NSArray arrayWithObjects:@"doA",@"doB",@"exclusiveMethod", nil]
          ];
         
         BCTrackingClass* tracker = [[BCTrackingClass alloc]init];
@@ -47,9 +47,23 @@ int main(int argc, const char * argv[])
         [tracked2 doC];
         [tracked2 doB];
         [tracked2 doA];
+        [tracked2 exclusiveMethod];
         
         NSLog(@"%@",[tracked returnHello]);
         
+        
+        //Trying to disable tracking
+        [BCTrackingClass setUpTrackingForClass:[BCTrackedClass class] andMethodArray:
+         [ NSArray arrayWithObjects:@"doA", nil]
+         ];
+        NSLog(@"Disabled Tracking for : doA");
+        
+        for (id key in tracker.trackerDict) {
+            NSLog(@"key: %@, value: %@ \n", key, [tracker.trackerDict objectForKey:key]);
+        }
+        
+        NSLog(@"Running doA, which should be untracked.");
+        [tracked doA];
         
         for (id key in tracker.trackerDict) {
             NSLog(@"key: %@, value: %@ \n", key, [tracker.trackerDict objectForKey:key]);

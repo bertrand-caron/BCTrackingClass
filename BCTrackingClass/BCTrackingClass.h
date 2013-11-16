@@ -36,13 +36,13 @@ Only way to init a Tracker object.
  
  @param aSelectorString String of the selector whose call we are logging.
 */
-+(void)logCallForMethod:(NSString*)aSelectorString;
++(void)logCallForMethod:(NSString*)aSelectorString andClass:(NSString*)aClassString;
 
 /**
  
  @param aSelectorString String of the selector whose call we are logging.
  */
--(void)logCallForMethod:(NSString*)aSelectorString;
+-(void)logCallForMethod:(NSString*)aSelectorString andClass:(NSString*)aClassString;
 
 /**
  Register a tracker as defaut using "static BCTrackingClass* registeredTracker". Plain simple.

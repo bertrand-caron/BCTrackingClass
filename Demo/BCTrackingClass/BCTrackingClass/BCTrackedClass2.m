@@ -44,4 +44,9 @@ BOOL doSwizzle2 = YES;
     //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
 }
 
+-(void)exclusiveMethod
+{
+    
+}
+
 @end

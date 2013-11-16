@@ -27,17 +27,17 @@ static BCTrackingClass* registeredTracker;
     return self;
 }
 
-//IMP Returning Void
+#pragma mark - IMP Returning Void
 void myMethodIMP(id self, SEL _cmd);
 
 void myMethodIMP(id self, SEL _cmd)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
@@ -50,10 +50,10 @@ void myMethodIMP1Arg(id self, SEL _cmd, id object1)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -66,10 +66,10 @@ void myMethodIMP2Arg(id self, SEL _cmd, id object1, id object2)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -83,10 +83,10 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -96,17 +96,17 @@ void myMethodIMP3Arg(id self, SEL _cmd, id object1, id object2, id object3)
 }
 
 
-//IMP returning objects
+#pragma mark - IMP Returning (id)
 id myMethodIMPID(id self, SEL _cmd);
 
 id myMethodIMPID(id self, SEL _cmd)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     return objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]));
@@ -118,10 +118,10 @@ id myMethodIMP1ArgID(id self, SEL _cmd, id object1)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     return objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -134,10 +134,10 @@ id myMethodIMP2ArgID(id self, SEL _cmd, id object1, id object2)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
     return objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -151,10 +151,10 @@ id myMethodIMP3ArgID(id self, SEL _cmd, id object1, id object2, id object3)
 {
     //NSLog(@"_cmd : %@",NSStringFromSelector(_cmd));
     if (registeredTracker==nil)
-    {[BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd)];}
+    {   [ BCTrackingClass logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];}
     else
     {
-        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd)];
+        [registeredTracker logCallForMethod:NSStringFromSelector(_cmd) andClass:NSStringFromClass([self class])];
     }
    return objc_msgSend(self,
                  NSSelectorFromString([NSString stringWithFormat:@"tracked%@",NSStringFromSelector(_cmd)]),
@@ -162,6 +162,8 @@ id myMethodIMP3ArgID(id self, SEL _cmd, id object1, id object2, id object3)
                  object2,
                  object3);
 }
+
+#pragma mark - Setting up tracking
 
 +(void)setUpTrackingForClass:(Class)aClass andMethodArray:(NSArray*)anArray //Array of selectorsStrings of methods to track
 {
@@ -247,7 +249,7 @@ id myMethodIMP3ArgID(id self, SEL _cmd, id object1, id object2, id object3)
 /**
 If we don't have a registered tracker, the calls will end up being logged here
 */
-+(void)logCallForMethod:(NSString*)aSelectorString
++(void)logCallForMethod:(NSString*)aSelectorString andClass:(NSString*)aClassString
 {
     NSLog(@"Catched a call to : %@",aSelectorString);
 }
@@ -255,24 +257,25 @@ If we don't have a registered tracker, the calls will end up being logged here
 /**
  If we have a registered tracker, the calls are being logged here.
 */
--(void)logCallForMethod:(NSString*)aSelectorString
+-(void)logCallForMethod:(NSString*)aSelectorString andClass:(NSString*)aClassString
 {
     /*if (! [trackerDict isKindOfClass:[NSMutableDictionary class]])
     {
         return;
     }*/
+    NSString* logString = [NSString stringWithFormat:@"[%@ %@]",aClassString,aSelectorString];
     
     NSLog(@"Catched a call to : %@",aSelectorString);
-    if ([trackerDict objectForKey:aSelectorString])
+    if ([trackerDict objectForKey:logString])
     {
         [trackerDict setObject:
          	[NSNumber numberWithInt:
-             	[[trackerDict objectForKey:aSelectorString]intValue]+1]
-            forKey:aSelectorString];
+             	[[trackerDict objectForKey:logString]intValue]+1]
+            forKey:logString];
     }
     else
     {
-        [trackerDict setObject:[NSNumber numberWithInt:1] forKey:aSelectorString];
+        [trackerDict setObject:[NSNumber numberWithInt:1] forKey:logString];
     }
         
 }

@@ -29,7 +29,7 @@ BOOL doSwizzle = YES;
 }
 
 -(void)doA
-{   //NSLog(@"Message : doA");
+{   //NSLog(@"Running : doA");
     //NSLog(@"_cmd : %@\n",NSStringFromSelector(_cmd));
     
 }

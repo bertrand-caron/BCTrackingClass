@@ -16,5 +16,6 @@
 -(void)doA;
 -(void)doB;
 -(void)doC;
+-(void)exclusiveMethod;
 
 @end
